@@ -6,7 +6,7 @@ ENV PROTOCOL_BUFFERS_PYTHON_IMPLEMENTATION=python
 ENV XDG_RUNTIME_DIR=/tmp/runtime-docker
 ENV NVIDIA_VISIBLE_DEVICES=all
 ENV NVIDIA_DRIVER_CAPABILITIES=all
-ENV GZ_PARTITION=px4_gz
+ENV GZ_PARTITION=px4_gz_docker
 ENV TERM=xterm-256color
 ENV DISPLAY=:20
 ENV PATH="/home/user/bin:${PATH}"
@@ -98,7 +98,7 @@ RUN bash /home/user/px4_setup.sh && rm /home/user/px4_setup.sh
 COPY install/entrypoint.sh /
 RUN sudo chmod +x /entrypoint.sh
 RUN sudo chsh -s /bin/bash user
-
+RUN pip install NavPy
 USER root
 
 CMD ["/bin/bash"]

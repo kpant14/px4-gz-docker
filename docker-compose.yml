@@ -7,27 +7,26 @@ volumes:
 
 services:
 
-  px4_gz:
+  px4_gz_docker:
     environment:
       - HOST_UID=${HOST_UID}
       - HOST_GID=${HOST_GID}
       - DISPLAY=$DISPLAY
       - RUN_VNC=false
       - SSH_AUTH_SOCK=${SSH_AUTH_SOCK}
-      - PX4_GZ_WORLD=default
-      - PX4_HOME_LAT=40.41537099446224
-      - PX4_HOME_LON=-86.93289541090424
-      - PX4_HOME_ALT=185
+      - PX4_GZ_WORLD=AbuDhabi
+      - PX4_HOME_LAT=24.484043629238872
+      - PX4_HOME_LON=54.36068616768677
+      - PX4_HOME_ALT=0
       - ROS_DOMAIN_ID=1
       - PX4_MICRODDS_NS=px4_1
-    image: tsunomi
-    # image: ${REGISTRY}/cognipilot/dream:${TAG}
+    image: px4_gz_docker
     build:
        dockerfile: Dockerfile
     tty: true
     stdin_open: true
     privileged: true
-    hostname: px4_gz
+    hostname: px4_gz_docker
     sysctls:
       - net.ipv6.conf.all.disable_ipv6=0
     volumes:

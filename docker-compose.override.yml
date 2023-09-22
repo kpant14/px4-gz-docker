@@ -1,7 +1,6 @@
 services:
 
-  px4_gz:
-
+  px4_gz_docker:
     deploy:
       resources:
         reservations:
@@ -9,3 +8,5 @@ services:
             - driver: nvidia
               count: 1
               capabilities: [gpu]
+
+  
