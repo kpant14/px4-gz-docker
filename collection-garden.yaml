@@ -18,8 +18,8 @@ repositories:
     version: multipath
   gz-gui:
     type: git
-    url: https://github.com/rudislab/gz-gui
-    version: pr-set-follow-camera-pgain
+    url: https://github.com/kpant14/gz-gui
+    version: gz-gui7
   gz-launch:
     type: git
     url: https://github.com/gazebosim/gz-launch
