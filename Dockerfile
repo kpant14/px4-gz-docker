@@ -105,6 +105,4 @@ USER root
 CMD ["/bin/bash"]
 ENTRYPOINT ["/entrypoint.sh"]
 
-# LABEL org.opencontainers.image.source = "https://github.com/CogniPilot/docker"
 
-# vim: set et fenc=utf-8 ff=unix ft=dockerfile sts=0 sw=2 ts=2 :
