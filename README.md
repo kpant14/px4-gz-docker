@@ -6,42 +6,46 @@ The `./work` directory setup
 run `./get_src.sh` to clone each repo, 
 ```
 work/
-┣ px4/
 ┣ ros2_ws/
-┃ ┗ src/
+┃ ┗px4/
+┃ ┗ src/ 
 ┃   ┣ px4_msgs/
 ┃   ┗ ros_gz/
+┃   ┗ px4_gps/
 ┃   ┗ px4_offboard/
+┃   ┗ gz-*/
 ┗ .gitignore
 ```
-Please build ros_gz from source. [see ros-gz](https://github.com/gazebosim/ros_gz)
-
-
+where * means all the relevant gazebo packages. 
 ### Build and run
 To build the image
 
 `docker compose build`
 
-To run multiple drones
+To run the docker container
 
 `./run_dev.sh`
 
-To access the shell of each service, in two different terminals run
+To access the shell, open a new terminal and run,
 
-Terminal 1: `docker exec -u user -it px4_gz_docker-px4_gz_docker-1 terminator`
+`docker exec -u user -it px4_gz_docker-px4_gz_docker-1 terminator`
 
-To start px4_sitl and ros2 offboard control, split each terminator into 3 panels and run
+To start px4_sitl and ros2 offboard control, split each terminator into 4 panels and run
 
-1. `cd px4 && make px4_sitl` to build px4_sitl first. (This only need to be built once in one of the container shells) \
-`PX4_SYS_AUTOSTART=4001 PX4_GZ_MODEL_POSE="0,0" PX4_GZ_MODEL=x500 ./build/px4_sitl_default/bin/px4 -i 1` to start px4_sitl instance with x500 in gz-garden.\
-For launching multiple drones, the same command as above can be used. The instance id should be different for each instance, for example, for launching a second drone, the instance 2 can be instantiated by adding `-i 2` at the end.\
-`PX4_SYS_AUTOSTART=4001 PX4_GZ_MODEL_POSE="10,0" PX4_GZ_MODEL=x500 ./build/px4_sitl_default/bin/px4 -i 2` 
-  
-3. `MicroXRCEAgent udp4 -p 8888` to start DDS agent for communication with ROS2. This creates a bridge between PX4's internal network and the ROS2 network.\
+1. [Terminal 1] Build gz and ros2 packages: `cd ros2_ws/` `colcon build --merge-install` (This may take upto 15 mins as gazebo will be built from source.)
+2. [Terminal 1] Source the terminal using `. install/setup.bash`
+3. [Terminal 1] Build px4: `cd px4 && make px4_sitl`
+4. [Terminal 1] Launch px4_sitl: `PX4_SYS_AUTOSTART=4001 PX4_GZ_MODEL_POSE="0,0" PX4_GZ_MODEL=x500 ./build/px4_sitl_default/bin/px4 -i 1` \
+    For launching multiple drones, the same command as above can be used. The instance id should be different for each instance, for example, for launching a second drone, the instance 2 can be instantiated by adding `-i 2` at the end.\
+`PX4_SYS_AUTOSTART=4001 PX4_GZ_MODEL_POSE="10,0" PX4_GZ_MODEL=x500 ./build/px4_sitl_default/bin/px4 -i 2`
+6. [Terminal 2] `MicroXRCEAgent udp4 -p 8888` to start DDS agent for communication with ROS2. This creates a bridge between PX4's internal network and the ROS2 network.\
 
-4. In the third terminal, start at `/work` directory. Then `cd ros2_ws/`. Build the workspace (if required) using `colcon build`. Source the terminal using `. install/setup.bash` 
-After this offboard script can be launched (Check for "Ready for launch!! message in the first terminal where the autopilot is launch to confirm that the drones are ready"). `cd src/px4-offboard/px4_offboard`, followed by `python3 offboard_smooth.py`
+7. [Terminal 3] Run fake gps node: `cd ros2_ws/`, source the terminal using `. install/setup.bash`,\
+     `ros2 run px4_gps px4_gps_sim_pub` 
+8. [Terminal 1] Takeoff the drone: `commander takeoff` (in the nutx shell)  
 
+7. [Terminal 4] Run spoofer node: `cd ros2_ws/`, source the terminal using `. install/setup.bash`,\
+     `ros2 launch px4_offboard set_spoofer.launch.py` 
 
 ### Environment Variables
 - `PX4_GZ_MODEL` Name of the px4 vehicle model to spawn in gz
