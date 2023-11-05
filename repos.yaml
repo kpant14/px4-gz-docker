@@ -93,3 +93,8 @@ repositories:
     type: git
     url: https://github.com/kpant14/offboard_detector
     version: main      
+  
+  mavros:
+    type: git
+    url: https://github.com/mavlink/mavros
+    version: ros2        
