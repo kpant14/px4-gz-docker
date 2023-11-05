@@ -68,3 +68,28 @@ repositories:
     type: git
     url: https://github.com/la1k/libpredict
     version: master
+
+  px4_msgs:
+    type: git
+    url: https://github.com:kpant14/px4_msgs.git
+    version: main
+  
+  ros_gz:
+    type: git
+    url: https://github.com:kpant14/ros_gz.git
+    version: ros2  
+  
+  px4-offboard:
+    type: git
+    url: https://github.com:kpant14/px4-offboard.git
+    version: master   
+  
+  px4_gps:
+    type: git
+    url: https://github.com:kpant14/px4_gps.git
+    version: main  
+
+  offboard_detector:
+    type: git
+    url: https://github.com:kpant14/offboard_detector.git
+    version: main      
