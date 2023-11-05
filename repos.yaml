@@ -71,25 +71,25 @@ repositories:
 
   px4_msgs:
     type: git
-    url: https://github.com:kpant14/px4_msgs
+    url: https://github.com/kpant14/px4_msgs
     version: main
   
   ros_gz:
     type: git
-    url: https://github.com:kpant14/ros_gz
+    url: https://github.com/kpant14/ros_gz
     version: ros2  
   
   px4-offboard:
     type: git
-    url: https://github.com:kpant14/px4-offboard
+    url: https://github.com/kpant14/px4-offboard 
     version: master   
   
   px4_gps:
     type: git
-    url: https://github.com:kpant14/px4_gps
+    url: https://github.com/kpant14/px4_gps
     version: main  
 
   offboard_detector:
     type: git
-    url: https://github.com:kpant14/offboard_detector
+    url: https://github.com/kpant14/offboard_detector
     version: main      
