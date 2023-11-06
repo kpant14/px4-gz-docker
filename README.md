@@ -18,6 +18,10 @@ work/
 ```
 where * means all the relevant gazebo packages. 
 ### Build and run
+Do not forget to change the branch
+
+`git switch gps_spoofing`
+
 To build the image
 
 `docker compose build`
