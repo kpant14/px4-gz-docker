@@ -20,6 +20,14 @@ sudo DEBIAN_FRONTEND=noninteractive  apt-get install --no-install-recommends -y 
 	qt5dxcb-plugin \
 	screen \
 	terminator \
-	vim
+	vim \
+	ros-humble-mavros \
+	ros-humble-mavros-extras
+
+sudo apt-get install libasio-dev
+
+sudo wget https://raw.githubusercontent.com/mavlink/mavros/master/mavros/scripts/install_geographiclib_datasets.sh
+#chmod +x install_geographiclib_datasets.sh
+sudo bash install_geographiclib_datasets.sh && sudo rm install_geographiclib_datasets.sh
 
 sudo pip install pykwalify

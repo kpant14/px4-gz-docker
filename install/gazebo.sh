@@ -12,8 +12,8 @@ sudo DEBIAN_FRONTEND=noninteractive apt-get install --no-install-recommends -y \
 	python3-vcstool python3-colcon-common-extensions libgz-transport12-dev gz-transport12-cli
 cd /tmp
 
-wget https://raw.githubusercontent.com/kpant14/px4-gz-docker/gps_spoofing/collection-garden.yaml -O collection-garden.yaml
-vcs import < collection-garden.yaml
+wget https://raw.githubusercontent.com/kpant14/px4-gz-docker/gps_spoofing/repos.yaml -O repos.yaml
+vcs import < repos.yaml
 
 sudo apt-get -y install \
   $(sort -u $(find . -iname 'packages-'`lsb_release -cs`'.apt' -o -iname 'packages.apt' | grep -v '/\.git/') | sed '/gz\|sdf/d' | tr '\n' ' ')
