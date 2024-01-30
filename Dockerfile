@@ -71,7 +71,7 @@ RUN sudo rm /etc/apt/apt.conf.d/docker-clean
 RUN mkdir /tmp/runtime-docker && sudo chmod 700 /tmp/runtime-docker
 
 # create a user for running the container
-ARG UID_USER=1002
+ARG UID_USER=100
 RUN sudo useradd --create-home -l -u $UID_USER -G sudo,plugdev,render,input,video user && \
  echo user: $UID_USER
 USER user
