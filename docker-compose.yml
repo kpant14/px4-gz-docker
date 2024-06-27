@@ -37,3 +37,10 @@ services:
       - $HOME/gnupg:/home/user/.gnupg
       - $HOME/.ssh:/home/user/.ssh
       - $HOME/.gitconfig:/home/user/.gitconfig
+    deploy:
+    resources:
+      reservations:
+        devices:
+          - driver: nvidia
+            count: 1
+            capabilities: [gpu]
