@@ -12,7 +12,7 @@ sudo DEBIAN_FRONTEND=noninteractive apt-get install --no-install-recommends -y \
 	python3-vcstool python3-colcon-common-extensions libgz-transport12-dev gz-transport12-cli
 cd /tmp
 
-wget https://raw.githubusercontent.com/kpant14/px4-gz-docker/multi_agent/repos.yaml -O repos.yaml
+wget https://raw.githubusercontent.com/kpant14/px4-gz-docker/multi_agent/script/repos.yaml -O repos.yaml
 vcs import < repos.yaml
 
 sudo apt-get -y install \

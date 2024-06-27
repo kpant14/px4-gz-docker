@@ -1,4 +1,4 @@
-version: "3.9"
+# version: "3.9"
 
 volumes:
 
@@ -38,9 +38,9 @@ services:
       - $HOME/.ssh:/home/user/.ssh
       - $HOME/.gitconfig:/home/user/.gitconfig
     deploy:
-    resources:
-      reservations:
-        devices:
-          - driver: nvidia
-            count: 1
-            capabilities: [gpu]
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
